@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carprice-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: carprice
+  template:
+    metadata:
+      labels:
+        app: carprice
+    spec:
+      containers:
+      - name: app121
+        image: app121.azurecr.io/app:latest
+        ports:
+        - containerPort: 5000
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: carprice-svc
+spec:
+  selector:
+    app: carprice
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer
