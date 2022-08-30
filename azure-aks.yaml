@@ -13,8 +13,8 @@ spec:
         app: carprice
     spec:
       containers:
-      - name: app121
-        image: app121.azurecr.io/app:latest
+      - name: carpricecont
+        image: app121.azurecr.io/gmadhu2022/car-price-prediction-app:#{Build.BuildId}#
         ports:
         - containerPort: 5000
 # service type loadbalancer       
